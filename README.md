@@ -6,13 +6,19 @@ I have created a micro service that will provide a RESTful API for managing user
 
 ## Getting Started
 
-Rename Test_task-main to test_task
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
 
-You need to have installed python, postgreSQL and also run this commands in virtual environment.
+You need to have installed python, postgreSQL and VScode.
+
+
+### Installing
+
+* Download zip file from github
+* Unzip this file to a folder
+* Open it with the VS code
+* Execute the commands listed below to the terminal
+* Then execute: python manage.py runserver
 
 ```
 pip install django
@@ -21,24 +27,6 @@ pip install psycopg2
 pip install requests
 python -m pip install django-cors-headers
 ```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 
 
