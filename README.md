@@ -1,5 +1,3 @@
-API documentation: https://documenter.getpostman.com/view/18653876/UVsLS6p1
-
 # Test_task
 
 I have created a micro service that will provide a RESTful API for managing user posts
@@ -41,6 +39,10 @@ python -m pip install django-cors-headers
 ## Versioning
 
 I use [Git](https://git-scm.com/) for versioning.
+
+## Links
+
+* [API documentation](https://documenter.getpostman.com/view/18653876/UVsLS6p1)
 
 ## Authors
 
