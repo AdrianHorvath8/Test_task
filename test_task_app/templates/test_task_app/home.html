@@ -11,9 +11,10 @@
 <body>
     {% extends 'main.html' %}
     {% block content %}
+
     <div>
-        <a href="{% url 'get_data' %}">Load data</a>
-        <a href="{% url 'get_users' %}">Load users</a>
+        <h1><a href="{% url 'get_users' %}">Load users first</a></h1>
+        <h2><a href="{% url 'get_data' %}">Load posts</a></h2>
         <p><a href="{% url 'create_post' %}">Create post</a></p>
 
         <form action="{% url 'home' %}" method="get">
@@ -21,14 +22,14 @@
         </form>
 
         {% for post in posts %}
-        <h2>PostId: {{post.id}}</h2>
-        <h2>Title:</h2>
-        <h4>{{post.title}}</h4>
-        <h2>Body:</h2>
-        <h4>{{post.body}}</h4>
-        <a href="{% url 'update_post' post.id %}">Update</a>
-        <a href="{% url 'delete_post' post.id %}">Delete</a>
-        <hr>
+            <h2>PostId: {{post.id}}</h2>
+            <h2>Title:</h2>
+            <h4>{{post.title}}</h4>
+            <h2>Body:</h2>
+            <h4>{{post.body}}</h4>
+            <a href="{% url 'update_post' post.id %}">Update</a>
+            <a href="{% url 'delete_post' post.id %}">Delete</a>
+            <hr>
         {% endfor %}
     </div>
 

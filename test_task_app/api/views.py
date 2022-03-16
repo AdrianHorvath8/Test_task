@@ -1,10 +1,8 @@
-
-from email import header
-import json
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from .serializers import PostSerializer
 from test_task_app.models import Post, User
-from .serializers import PostSerializer, PostUpdateSerializer
+import json
 import requests
 
 @api_view(["GET"])
@@ -15,8 +13,8 @@ def get_routes(request):
         "GET /api/post/:id",
         "GET /api/user/:id",
         "POST /api/post_create",
-        "POST /api/post_update",
-        "DELETE /api/post_delete",
+        "POST /api/post_update/:id",
+        "DELETE /api/post_delete/:id",
     ]
     return Response(routes)
 
@@ -32,17 +30,17 @@ def post_view(request, pk):
         post = Post.objects.get(id=pk)
         serializer = PostSerializer(post, many=False)
     except:
-        return Response( json.dumps([{"Error": "Post with that id does not exists"}]))
+        return Response(json.dumps([{"Error": "Post with that id does not exists"}]))
     return Response(serializer.data)
 
 @api_view(["GET"])
 def user_view(request, pk):
     try:
         user = User.objects.get(id=pk)
-        posts= user.post_set.all()
+        posts = user.post_set.all()
         serializer = PostSerializer(posts, many=True)
     except:
-        return Response( json.dumps([{"Error": "User with that id does not exists"}]))
+        return Response(json.dumps([{"Error": "User with that id does not exists"}]))
     return Response(serializer.data)
 
 @api_view(["POST"])
@@ -52,9 +50,8 @@ def post_create(request):
     posts = response.json()
     holder = False
     for i in posts:
-        input_userId=request.data["user"]
+        input_userId = request.data["user"]
 
-        
         if input_userId == i["id"]:
             holder = True
             break 
@@ -63,11 +60,10 @@ def post_create(request):
         else:
             pass
     
-        
     if holder == True:
         pass
     else:
-        return Response( json.dumps([{"Error": "User with that id does not exists"}]))
+        return Response(json.dumps([{"Error": "User with that id does not exists"}]))
 
     if serializer.is_valid():
         serializer.save()
@@ -84,7 +80,7 @@ def post_update(request, pk):
         if serializer.is_valid():
             serializer.save()
     except:
-        return Response( json.dumps([{"Error": "Post with that id does not exists"}]))
+        return Response(json.dumps([{"Error": "Post with that id does not exists"}]))
 
     return Response(serializer.data)
 
@@ -94,5 +90,5 @@ def post_delete(request, pk):
         post = Post.objects.get(id=pk)
         post.delete()
     except:
-        return Response( json.dumps([{"Error": "Post with that id does not exists"}]))
+        return Response(json.dumps([{"Error": "Post with that id does not exists"}]))
     return Response("Post succsesfully delete!")
